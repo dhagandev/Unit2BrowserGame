@@ -7,5 +7,11 @@
   <body>
     <h1>Users</h1>
     <p>Welcome to Users</p>
+
+    <%if (user) { %>
+    	<a href="/logout">Log Out</a>
+    <% } else { %>
+    	<a href="/auth/google"> Log in with Google</a>
+    <% } %>
   </body>
 </html>
