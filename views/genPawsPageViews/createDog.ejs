@@ -1,0 +1,16 @@
+<form id="create-dog" action="/indDog" method="POST">
+	<label>Name:</label>
+	<input type="text" name="dog-name">
+	<label>Gender:</label>
+	<input type="radio" name="dog-gender" value="female"> Female
+	<input type="radio" name="dog-gender" value="male"> Male
+	<label>Breed:</label>
+	<select name="dog-breed">
+		<% list[0].forEach(function(ele) { %>
+			<option value="<%= ele %>"> <%= ele %> </option>
+		<% }) %>
+	</select>
+
+	<button type="submit" class="btn make-mix">Buy a Mix</button>
+	<button type="submit" class="btn make-pure">Buy a Purebred</button>
+</form>

@@ -3,7 +3,16 @@ var mongoose = require('mongoose');
 var userSchema = new mongoose.Schema({
 	name: String,
 	email: String,
-	googleId: String
+	googleId: String,
+	img: {
+		data: Buffer,
+		contentType: String
+	},
+	money: {
+		type: Number,
+		default: 50000
+	},
+	dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}]
 }, {
 	timestamps: true
 });
