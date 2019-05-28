@@ -8,7 +8,7 @@ module.exports = {
 	createNewMixDog
 }
 
-function createNewPureDog(name, gender, breed) {
+async function createNewPureDog(name, gender, breed) {
 	let newDog = new Dog();
 	newDog.name = name;
 	newDog.gender = gender.toLowerCase();
@@ -22,10 +22,17 @@ function createNewPureDog(name, gender, breed) {
 	newDog.genetics.joints = generateSetRandomHealthGene();
 	newDog.genetics.coat = generateSetRandomHealthGene();
 
+	try {
+		newDog.img = await apiScr.getImage(breed);
+
+	} catch (error) {
+		console.log(error);
+	}
+
 	return newDog;
 }
 
-function createNewMixDog(name, gender, breed) {
+async function createNewMixDog(name, gender, breed) {
 	let newDog = new Dog();
 	newDog.name = name;
 	newDog.gender = gender;
@@ -38,8 +45,14 @@ function createNewMixDog(name, gender, breed) {
 	newDog.genetics.lungs = generateSetRandomHealthGene();
 	newDog.genetics.joints = generateSetRandomHealthGene();
 	newDog.genetics.coat = generateSetRandomHealthGene();
-
 	
+	try {
+		newDog.img = await apiScr.getImage(breed);
+
+	} catch (error) {
+		console.log(error);
+	}
+
 	return newDog;
 }
 

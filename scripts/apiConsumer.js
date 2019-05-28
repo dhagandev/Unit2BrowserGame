@@ -1,4 +1,5 @@
 var request = require('request');
+var axios = require('axios');
 
 const dceoHeader = {}
 
@@ -7,14 +8,15 @@ const dapiHeader = {
 	'Authorization': process.env.DAPI_KEY
 }
 
-//Dog CEO API: DCEO
-//The Dog API: DAPI, use this list for displaying options
+//Dog CEO API: DCEO, use this for images
+//The Dog API: DAPI, use this list for displaying options and breed info
 
 module.exports = {
 	getDCEOFullBreedList,
 	getDAPIFullBreedList,
 	makeComboList,
-	getComboLists
+	getComboLists,
+	getImage
 }
 
 let dceoList = [];
@@ -96,4 +98,21 @@ function getComboLists() {
 	}
 
 	return [comboListDAPI, comboListDCEO];
+}
+
+async function getImage(breed) {
+	let listIdx = comboListDAPI.indexOf(breed);
+	let dceoBreed = comboListDCEO[listIdx];
+	let opt = {
+		url: 'https://dog.ceo/api/breed/' + dceoBreed + '/images/random',
+		headers: dceoHeader
+	}
+
+	try {
+		const image = await axios.get(opt.url);
+		return image.data.message;
+	}
+	catch {
+		console.log(error);
+	}
 }

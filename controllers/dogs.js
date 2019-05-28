@@ -31,9 +31,17 @@ function getOneDog(req, res, next) {
 	})
 }
 
-function createPureDog(req, res, next) {
-	let {dogName, dogGender, dogBreed} = req.body;
-	let dog = dogFun.createNewPureDog(dogName, dogGender, dogBreed);
+async function createPureDog(req, res, next) {
+	let dog;
+
+	try {
+		let {dogName, dogGender, dogBreed} = req.body;
+		dog = await dogFun.createNewPureDog(dogName, dogGender, dogBreed);
+	}
+	catch(error) {
+		console.log(error);
+	}
+
 	dog.save()
 	.then(dog => {
 		res.redirect('/dogs/' + dog._id);
@@ -44,9 +52,17 @@ function createPureDog(req, res, next) {
 	})
 }
 
-function createMixDog(req, res, next) {
-	let {dogName, dogGender, dogBreed} = req.body;
-	let dog = dogFun.createNewMixDog(dogName, dogGender, dogBreed);
+async function createMixDog(req, res, next) {
+	let dog;
+
+	try {
+		let {dogName, dogGender, dogBreed} = req.body;
+		dog = await dogFun.createNewMixDog(dogName, dogGender, dogBreed);
+	}
+	catch(error) {
+		console.log(error);
+	}
+
 	dog.save()
 	.then(dog => {
 		res.redirect('/dogs/' + dog._id);
