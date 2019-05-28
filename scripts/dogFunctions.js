@@ -39,6 +39,7 @@ function createNewMixDog(name, gender, breed) {
 	newDog.genetics.joints = generateSetRandomHealthGene();
 	newDog.genetics.coat = generateSetRandomHealthGene();
 
+	
 	return newDog;
 }
 

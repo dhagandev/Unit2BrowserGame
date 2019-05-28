@@ -1,12 +1,18 @@
 var mongoose = require('mongoose');
 
 var dogSchema = new mongoose.Schema({
-	name: String,
+	name: {
+		type: String,
+		required: true
+	},
 	img: {
 		data: Buffer,
 		contentType: String
 	},
-	gender: String,
+	gender: {
+		type: String,
+		required: true
+	},
 	hunger: {
 		type: Number,
 		default: 75
@@ -25,14 +31,19 @@ var dogSchema = new mongoose.Schema({
 	},
 	mom: {
 		type: mongoose.Schema.Types.ObjectId, 
-		ref: 'Dog'
+		ref: 'Dog',
+		default: null
 	},
 	dad: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Dog'
+		ref: 'Dog',
+		default: null
 	},
 	children: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
-	mainBreed: String,
+	mainBreed: {
+		type: String,
+		required: true
+	},
 	breedPercent: [{breed: String, percentage: Number}],
 	genetics: {
 		brain: [String], 

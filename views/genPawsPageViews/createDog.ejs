@@ -1,11 +1,11 @@
 <form id="create-dog" method="POST">
 	<label>Name:</label>
-	<input type="text" name="dog-name">
+	<input type="text" name="dogName">
 	<label>Gender:</label>
-	<input type="radio" name="dog-gender" value="female"> Female
-	<input type="radio" name="dog-gender" value="male"> Male
+	<input type="radio" name="dogGender" value="female"> Female
+	<input type="radio" name="dogGender" value="male"> Male
 	<label>Breed:</label>
-	<select name="dog-breed">
+	<select name="dogBreed">
 		<% list[0].forEach(function(ele) { %>
 			<option value="<%= ele %>"> <%= ele %> </option>
 		<% }) %>
