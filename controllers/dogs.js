@@ -47,13 +47,19 @@ function createPureDog(req, res, next) {
 function createMixDog(req, res, next) {
 	console.log("MIX DOG")
 	let dog = dogFun.createNewMixDog(req.body.name, req.body.gender, req.body.breed);
-	request.post(server + 'api/dogs', dog, (error, res, body) => {
+	console.log("DOG CREATED!: ");
+	console.log(dog)
+	request.post(server + '/api/dogs', dog, (error, postRes, body) => {
+		console.log("Trying to post to db");
 		if (error) {
 			console.log(error);
+			console.log("\n");
+			console.log(server);
+			res.render(server + '/dogs');
 			return;
 		}
 		console.log(body);
-		res.render(server + 'dogs/' + dog._id);
+		res.render(server + '/dogs/' + dog._id);
 	});
 	// dog.save()
 	// .then( dog => {
