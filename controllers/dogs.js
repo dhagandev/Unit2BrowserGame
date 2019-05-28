@@ -14,7 +14,11 @@ function getAllDogs(req, res, next) {
 	Dog.find({})
 	.then(dogs => {
 		let list = apiScr.getComboLists();
-		res.render('genPawsMainPages/dogs', {dogs, list});
+		res.render('genPawsMainPages/dogs', {
+			dogs, 
+			list,
+			user: req.user
+		});
 	})
 	.catch(error => {
 		console.log(error);
@@ -24,7 +28,10 @@ function getAllDogs(req, res, next) {
 function getOneDog(req, res, next) {
 	Dog.findById(req.params.id)
 	.then(dog => {
-		res.render('genPawsMainPages/indDog', {dog});
+		res.render('genPawsMainPages/indDog', {
+			dog,
+			user: req.user
+		});
 	})
 	.catch(error => {
 		console.log(error);

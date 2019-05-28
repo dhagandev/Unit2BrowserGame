@@ -31,7 +31,10 @@ function index(req, res, next) {
 function getAllUsers(req, res, next) {
 	fetch(server + '/api/users')
 	.then(function(response) {
-		res.render('genPawsMainPages/users', {response});
+		res.render('genPawsMainPages/users', {
+			response,
+			user: req.user
+		});
 	})
 	.catch(err => console.log(err));
 }
@@ -39,7 +42,10 @@ function getAllUsers(req, res, next) {
 function getOneUser(req, res, next) {
 	fetch(server + '/api/users/5ce8264e58de633088015e18')
 	.then(function(response) {
-		res.render('genPawsMainPages/indUser', {response});
+		res.render('genPawsMainPages/indUser', {
+			response,
+			user: req.user
+		});
 	})
 	.catch(err => console.log(err));
 }
