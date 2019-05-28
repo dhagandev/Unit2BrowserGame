@@ -1,8 +1,4 @@
 const User = require('../models/user');
-const fetch = require("node-fetch");
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var request = new XMLHttpRequest();
-var server = require('../config/index');
 
 module.exports = {
 	index,
@@ -29,23 +25,27 @@ function index(req, res, next) {
 };
 
 function getAllUsers(req, res, next) {
-	fetch(server + '/api/users')
-	.then(function(response) {
+	User.find({})
+	.then(response => {
 		res.render('genPawsMainPages/users', {
 			response,
 			user: req.user
 		});
 	})
-	.catch(err => console.log(err));
+	.catch(error => {
+		console.log(error);
+	})
 }
 
 function getOneUser(req, res, next) {
-	fetch(server + '/api/users/5ce8264e58de633088015e18')
-	.then(function(response) {
+	User.findById(req.params.id)
+	.then(response => {
 		res.render('genPawsMainPages/indUser', {
 			response,
 			user: req.user
 		});
 	})
-	.catch(err => console.log(err));
+	.catch(error => {
+		console.log(error);
+	})
 }
