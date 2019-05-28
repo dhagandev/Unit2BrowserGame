@@ -89,6 +89,7 @@ function makeComboList() {
 	}
 }
 
+//Not a full combo list but good enough to temp work.
 function getComboLists() {
 	if(comboListDAPI.length === 0 && comboListDCEO.length === 0) {
 		makeComboList();

@@ -23,8 +23,8 @@ function getAllDogs(req, res, next) {
 
 function getOneDog(req, res, next) {
 	Dog.findById(req.params.id)
-	.then(dogs => {
-		res.render('genPawsMainPages/indDog', {dogs});
+	.then(dog => {
+		res.render('genPawsMainPages/indDog', {dog});
 	})
 	.catch(error => {
 		console.log(error);
