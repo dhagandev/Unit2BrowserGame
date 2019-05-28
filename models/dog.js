@@ -6,7 +6,7 @@ var dogSchema = new mongoose.Schema({
 		data: Buffer,
 		contentType: String
 	},
-	gender: Boolean,
+	gender: String,
 	hunger: {
 		type: Number,
 		default: 75

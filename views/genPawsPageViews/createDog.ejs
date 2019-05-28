@@ -1,4 +1,4 @@
-<form id="create-dog" action="/indDog" method="POST">
+<form id="create-dog" method="POST">
 	<label>Name:</label>
 	<input type="text" name="dog-name">
 	<label>Gender:</label>
@@ -11,6 +11,6 @@
 		<% }) %>
 	</select>
 
-	<button type="submit" class="btn make-mix">Buy a Mix</button>
-	<button type="submit" class="btn make-pure">Buy a Purebred</button>
+	<button type="submit" formaction="/dogs/mix" class="btn make-mix">Buy a Mix</button>
+	<button type="submit" formaction="/dogs/pure" class="btn make-pure">Buy a Purebred</button>
 </form>

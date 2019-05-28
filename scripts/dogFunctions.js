@@ -11,7 +11,7 @@ module.exports = {
 function createNewPureDog(name, gender, breed) {
 	let newDog = new Dog();
 	newDog.name = name;
-	newDog.gender = gender;
+	newDog.gender = gender.toLowerCase();
 	newDog.mainBreed = breed;
 	newDog.breedPercent = [{breed: breed, percentage: 100}];
 	newDog.mom = null;
@@ -21,10 +21,11 @@ function createNewPureDog(name, gender, breed) {
 	newDog.genetics.lungs = generateSetRandomHealthGene();
 	newDog.genetics.joints = generateSetRandomHealthGene();
 	newDog.genetics.coat = generateSetRandomHealthGene();
+
+	return newDog;
 }
 
 function createNewMixDog(name, gender, breed) {
-	console.log(apiBreedList);
 	let newDog = new Dog();
 	newDog.name = name;
 	newDog.gender = gender;
@@ -38,7 +39,7 @@ function createNewMixDog(name, gender, breed) {
 	newDog.genetics.joints = generateSetRandomHealthGene();
 	newDog.genetics.coat = generateSetRandomHealthGene();
 
-	// console.log(newDog);
+	return newDog;
 }
 
 function generateBreedPercent(breed) {
@@ -63,29 +64,18 @@ function generateBreedPercent(breed) {
 			whole -= perVal;
 		}
 	}
-
-
-	console.log(breedArr);
-
 	breedArr = combineDupBreed(breedArr);
-	console.log(breedArr);
-
 	breedArr = sortBreedPercentage(breedArr);
-	console.log(breedArr);
-
 	breedArr = removeTooSmallPercentage(breedArr);
-	console.log(breedArr);
-
+	
 	return breedArr;
 }
 
 function combineDupBreed(arr) {
-	console.log("\n\n")
 	let nameFound = [];
 	let sumArr = [];
 
 	for (let i = 0; i < arr.length; i++) {
-		console.log(arr[i]);
 		let name = arr[i].breed;
 		if (nameFound.includes(name)) {
 			nameFound.push("Duplicate");
@@ -101,7 +91,6 @@ function combineDupBreed(arr) {
 }
 
 function sortBreedPercentage(arr) {
-	console.log("\n\n")
 	let sorted = arr.sort(
 		function(ele1, ele2) {
 			return ele2.percentage - ele1.percentage
@@ -112,7 +101,6 @@ function sortBreedPercentage(arr) {
 }
 
 function removeTooSmallPercentage(arr) {
-	console.log("\n\n")
 	if (arr[arr.length - 1].percentage < 3) {
 		arr[0].percentage += arr[arr.length - 1].percentage;
 		arr.pop();
