@@ -26,9 +26,9 @@ function index(req, res, next) {
 
 function getAllUsers(req, res, next) {
 	User.find({})
-	.then(response => {
+	.then(users => {
 		res.render('genPawsMainPages/users', {
-			response,
+			users,
 			user: req.user
 		});
 	})

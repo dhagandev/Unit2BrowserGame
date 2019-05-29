@@ -1,0 +1,34 @@
+body {
+	margin: 0;
+	padding: 1em;
+}
+
+.masonry {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 90vw;
+}
+
+.dog-card {
+	margin: .25em;
+	max-width: 15em;
+	text-align: center;
+	font-weight: 900;
+	font-size: 2rem;
+	font-style: italic;
+}
+
+.dog-card img {
+	border-radius: 20px;
+	max-width: 100%;
+	transition: .8s opacity;
+}
+
+.dog-card:hover img {
+	opacity: 0.3;
+}
+
+.dog-card:hover img:hover {
+	opacity: 1;
+}

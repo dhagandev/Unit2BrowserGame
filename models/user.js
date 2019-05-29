@@ -5,8 +5,7 @@ var userSchema = new mongoose.Schema({
 	email: String,
 	googleId: String,
 	img: {
-		data: Buffer,
-		contentType: String
+		type: String
 	},
 	money: {
 		type: Number,

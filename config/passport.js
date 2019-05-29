@@ -12,18 +12,23 @@ passport.use(new GoogleStrategy({
 			if (err) {
 				return cb(err);
 			}
-			else {
+			if (!user) {
 				var newUser = new User({
 					name: profile.displayName,
 					email: profile.emails[0].value,
 					googleId: profile.id
 				})
+				console.log("What is this new User bs?");
+				console.log(newUser);
 				newUser.save(err => {
 					if (err) {
 						return cb(err)
 					}
 					return cb(null, newUser)
 				})
+			}
+			else{
+				cb(null, user);
 			}
 		})
 	}

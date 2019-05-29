@@ -1,7 +1,14 @@
-<% dogs.forEach(function(dog) { %>
-	<div>
-		<%= dog.name %>
-		<%= dog.gender %>
-		<%= dog.mainBreed %>
-	</div>
-<% }) %>
+<div class="masonry">
+	<% dogs.sort(() => { return 0.5 - Math.random() }).forEach((dog) => { %>
+		<a href="/dogs/<%= dog._id %>">
+			<div class="dog-card">
+				<div class="dog-card-img">
+					<img src="<%= dog.img %>" alt="Your dog's picture">
+				</div>
+				<div class="dog-card-name">
+					<%= dog.name %>
+				</div>
+			</div>
+		</a>
+	<% }) %>
+</div>

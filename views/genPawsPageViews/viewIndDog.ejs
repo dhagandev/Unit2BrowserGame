@@ -1,16 +1,22 @@
+<img src="<%= dog.img %>" alt="Your dog's picture">
 <%= dog.name %>
 <%= dog.gender %>
 <%= dog.mainBreed %>
 <%= dog.breedPercent %>
 
-<img src="<%= dog.img %>" alt="Your dog's picture">
+<br><br><br>
 
 <%= dog.hunger %>
 <%= dog.thirst %>
 <%= dog.happiness %>
+
+<br><br><br>
+
 <%= dog.studding %>
 <%= dog.mom %>
 <%= dog.dad %>
 <%= dog.children %>
 <%= dog.genetics %>
 <%= dog.owner %>
+
+<%- include('./indDogInteractions') %>

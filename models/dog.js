@@ -12,15 +12,33 @@ var dogSchema = new mongoose.Schema({
 	},
 	hunger: {
 		type: Number,
-		default: 75
+		default: 75,
+		min: 0,
+		max: 100
+	},
+	lastFed: {
+		type: Date,
+		default: Date.now()
 	},
 	thirst: {
 		type: Number,
-		default: 75
+		default: 75,
+		min: 0,
+		max: 100
+	},
+	lastDrank: {
+		type: Date,
+		default: Date.now()
 	},
 	happiness: {
 		type: Number,
-		default: 75
+		default: 75,
+		min: 0,
+		max: 100
+	},
+	lastPet: {
+		type: Date,
+		default: Date.now()
 	},
 	studding: {
 		type: Boolean,
