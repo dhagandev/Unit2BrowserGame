@@ -1,3 +1,5 @@
+<% console.log(dog) %>
+
 <img src="<%= dog.img %>" alt="Your dog's picture">
 <%= dog.name %>
 <%= dog.gender %>
@@ -12,11 +14,16 @@
 
 <br><br><br>
 
+<%= dog.owner %>
+
+<br><br><br>
+
 <%= dog.studding %>
 <%= dog.mom %>
 <%= dog.dad %>
 <%= dog.children %>
 <%= dog.genetics %>
+<%= dog.geneticHealth %>
 <%= dog.owner %>
 
 <%- include('./indDogInteractions') %>

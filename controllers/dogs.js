@@ -48,8 +48,6 @@ function timedUpdate(dog) {
 	let waterTime = getTimedDiff(dog.lastDrank);
 	let petTime = getTimedDiff(dog.lastPet);
 
-	console.log("Times are: " + feedTime + " " + waterTime + " " + petTime);
-
 	let modelUpdated = false;
 
 	if (feedTime >= 5) {
@@ -97,7 +95,7 @@ async function createPureDog(req, res, next) {
 
 	try {
 		let {dogName, dogGender, dogBreed} = req.body;
-		dog = await dogFun.createNewPureDog(dogName, dogGender, dogBreed);
+		dog = await dogFun.createNewPureDog(dogName, dogGender, dogBreed, req.user);
 	}
 	catch(error) {
 		console.log(error);
@@ -118,7 +116,7 @@ async function createMixDog(req, res, next) {
 
 	try {
 		let {dogName, dogGender, dogBreed} = req.body;
-		dog = await dogFun.createNewMixDog(dogName, dogGender, dogBreed);
+		dog = await dogFun.createNewMixDog(dogName, dogGender, dogBreed, req.user);
 	}
 	catch(error) {
 		console.log(error);
@@ -170,13 +168,11 @@ function waterDog(req, res, next) {
 function petDog(req, res, next) {
 	Dog.findById(req.params.id)
 	.then(dog => {
-		console.log(dog);
 		dog.happiness += 10;
 		if (dog.happiness > 100) {
 			dog.happiness = 100;
 		}
 		dog.lastPet = Date.now();
-		console.log(dog);
 
 		dog.save();
 

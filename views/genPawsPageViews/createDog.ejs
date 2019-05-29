@@ -1,16 +1,18 @@
-<form id="create-dog" method="POST">
-	<label>Name:</label>
-	<input type="text" name="dogName">
-	<label>Gender:</label>
-	<input type="radio" name="dogGender" value="Female"> Female
-	<input type="radio" name="dogGender" value="Male"> Male
-	<label>Breed:</label>
-	<select name="dogBreed">
-		<% list[0].forEach(function(ele) { %>
-			<option value="<%= ele %>"> <%= ele %> </option>
-		<% }) %>
-	</select>
+<% if (user) { %>
+	<form id="create-dog" method="POST">
+		<label>Name:</label>
+		<input type="text" name="dogName">
+		<label>Gender:</label>
+		<input type="radio" name="dogGender" value="Female"> Female
+		<input type="radio" name="dogGender" value="Male"> Male
+		<label>Breed:</label>
+		<select name="dogBreed">
+			<% list[0].forEach(function(ele) { %>
+				<option value="<%= ele %>"> <%= ele %> </option>
+			<% }) %>
+		</select>
 
-	<button type="submit" formaction="/dogs/mix" class="btn make-mix">Buy a Mix</button>
-	<button type="submit" formaction="/dogs/pure" class="btn make-pure">Buy a Purebred</button>
-</form>
+		<button type="submit" formaction="/dogs/mix" class="btn make-mix">Buy a Mix</button>
+		<button type="submit" formaction="/dogs/pure" class="btn make-pure">Buy a Purebred</button>
+	</form>
+<% } %>

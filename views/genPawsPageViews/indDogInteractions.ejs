@@ -1,23 +1,27 @@
-<br><br>
+<% if (user && (user._id.toString() === dog.owner.toString())) { %>
 
-<form action="/dogs/<%= dog._id %>/feed?_method=PUT" method="POST" class="secondary-content">
-	<button type="submit" class="btn">Feed Dog</button>
-</form>
+	<br><br>
 
-<br><br>
+	<form action="/dogs/<%= dog._id %>/feed?_method=PUT" method="POST" class="secondary-content">
+		<button type="submit" class="btn">Feed Dog</button>
+	</form>
 
-<form action="/dogs/<%= dog._id %>/water?_method=PUT" method="POST" class="secondary-content">
-	<button type="submit" class="btn">Water Dog</button>
-</form>
+	<br><br>
 
-<br><br>
+	<form action="/dogs/<%= dog._id %>/water?_method=PUT" method="POST" class="secondary-content">
+		<button type="submit" class="btn">Water Dog</button>
+	</form>
 
-<form action="/dogs/<%= dog._id %>/pet?_method=PUT" method="POST" class="secondary-content">
-	<button type="submit" class="btn">Pet Dog</button>
-</form>
+	<br><br>
 
-<br><br>
+	<form action="/dogs/<%= dog._id %>/pet?_method=PUT" method="POST" class="secondary-content">
+		<button type="submit" class="btn">Pet Dog</button>
+	</form>
 
-<form action="/dogs/<%= dog._id %>?_method=DELETE" method="POST" class="secondary-content">
-	<button type="submit" class="btn">Abandon Dog</button>
-</form>
+	<br><br>
+
+	<form action="/dogs/<%= dog._id %>?_method=DELETE" method="POST" class="secondary-content">
+		<button type="submit" class="btn">Abandon Dog</button>
+	</form>
+
+<% } %>

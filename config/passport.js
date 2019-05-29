@@ -18,8 +18,6 @@ passport.use(new GoogleStrategy({
 					email: profile.emails[0].value,
 					googleId: profile.id
 				})
-				console.log("What is this new User bs?");
-				console.log(newUser);
 				newUser.save(err => {
 					if (err) {
 						return cb(err)

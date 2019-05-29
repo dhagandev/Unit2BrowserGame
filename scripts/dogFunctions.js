@@ -8,7 +8,7 @@ module.exports = {
 	createNewMixDog
 }
 
-async function createNewPureDog(name, gender, breed) {
+async function createNewPureDog(name, gender, breed, user) {
 	let newDog = new Dog();
 	newDog.name = name;
 	newDog.gender = gender.toLowerCase();
@@ -16,12 +16,23 @@ async function createNewPureDog(name, gender, breed) {
 	newDog.breedPercent = [{breed: breed, percentage: 100}];
 	newDog.mom = null;
 	newDog.dad = null;
-	newDog.genetics.brain = generateSetRandomHealthGene();
-	newDog.genetics.heart = generateSetRandomHealthGene();
-	newDog.genetics.lungs = generateSetRandomHealthGene();
-	newDog.genetics.joints = generateSetRandomHealthGene();
-	newDog.genetics.coat = generateSetRandomHealthGene();
+	newDog.owner = user;
 
+	newDog.genetics.brain = generateSetRandomHealthGene();
+	newDog.geneticHealth.brain = healthFocusSet(newDog.genetics.brain);
+
+	newDog.genetics.heart = generateSetRandomHealthGene();
+	newDog.geneticHealth.heart = healthFocusSet(newDog.genetics.heart);
+
+	newDog.genetics.lungs = generateSetRandomHealthGene();
+	newDog.geneticHealth.lungs = healthFocusSet(newDog.genetics.lungs);
+
+	newDog.genetics.joints = generateSetRandomHealthGene();
+	newDog.geneticHealth.joints = healthFocusSet(newDog.genetics.joints);
+
+	newDog.genetics.coat = generateSetRandomHealthGene();
+	newDog.geneticHealth.coat = healthFocusSet(newDog.genetics.coat);
+	
 	try {
 		newDog.img = await apiScr.getImage(breed);
 
@@ -29,10 +40,11 @@ async function createNewPureDog(name, gender, breed) {
 		console.log(error);
 	}
 
+
 	return newDog;
 }
 
-async function createNewMixDog(name, gender, breed) {
+async function createNewMixDog(name, gender, breed, user) {
 	let newDog = new Dog();
 	newDog.name = name;
 	newDog.gender = gender;
@@ -40,11 +52,22 @@ async function createNewMixDog(name, gender, breed) {
 	newDog.breedPercent = generateBreedPercent(breed);
 	newDog.mom = null;
 	newDog.dad = null;
+	newDog.owner = user;
+
 	newDog.genetics.brain = generateSetRandomHealthGene();
+	newDog.geneticHealth.brain = healthFocusSet(newDog.genetics.brain);
+
 	newDog.genetics.heart = generateSetRandomHealthGene();
+	newDog.geneticHealth.heart = healthFocusSet(newDog.genetics.heart);
+
 	newDog.genetics.lungs = generateSetRandomHealthGene();
+	newDog.geneticHealth.lungs = healthFocusSet(newDog.genetics.lungs);
+
 	newDog.genetics.joints = generateSetRandomHealthGene();
+	newDog.geneticHealth.joints = healthFocusSet(newDog.genetics.joints);
+
 	newDog.genetics.coat = generateSetRandomHealthGene();
+	newDog.geneticHealth.coat = healthFocusSet(newDog.genetics.coat);
 	
 	try {
 		newDog.img = await apiScr.getImage(breed);
@@ -154,4 +177,29 @@ function getRandomIntInc(min, max) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function healthFocusSet(geneticArr) {
+	let hCount = 0;
+
+	for (let i = 0; i < geneticArr.length; i++) {
+		let word = geneticArr[i];
+		if (word[0] === 'h') {
+			hCount++;
+		}
+		if (word[1] === 'h') {
+			hCount++;
+		}
+	}
+
+	if (hCount == 0) {
+		return "Perfect";
+	}
+	if (hCount >= 1 && hCount <= 2) {
+		return "Good";
+	}
+	if (hCount >= 3 && hCount <= 4) {
+		return "Fair";
+	}
+	return "Poor";
 }

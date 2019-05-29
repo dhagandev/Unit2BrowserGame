@@ -5,13 +5,18 @@ var dogCtrl = require('../controllers/dogs');
 router.get('/', dogCtrl.getAllDogs);
 router.get('/:id', dogCtrl.getOneDog);
 
-router.post('/pure', dogCtrl.createPureDog);
-router.post('/mix', dogCtrl.createMixDog);
+router.post('/pure', isLoggedIn, dogCtrl.createPureDog);
+router.post('/mix', isLoggedIn, dogCtrl.createMixDog);
 
-router.put('/:id/feed', dogCtrl.feedDog);
-router.put('/:id/water', dogCtrl.waterDog);
-router.put('/:id/pet', dogCtrl.petDog);
+router.put('/:id/feed', isLoggedIn, dogCtrl.feedDog);
+router.put('/:id/water', isLoggedIn, dogCtrl.waterDog);
+router.put('/:id/pet', isLoggedIn, dogCtrl.petDog);
 
-router.delete('/:id', dogCtrl.abandonDog);
+router.delete('/:id', isLoggedIn, dogCtrl.abandonDog);
+
+function isLoggedIn(req, res, next) {
+  if ( req.isAuthenticated() ) return next();
+  res.redirect('/auth/google');
+}
 
 module.exports = router;

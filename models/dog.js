@@ -67,6 +67,13 @@ var dogSchema = new mongoose.Schema({
 		joints: [String],
 		coat: [String]
 	},
+	geneticHealth: {
+		brain: String, 
+		heart: String,
+		lungs: String,
+		joints: String,
+		coat: String
+	},
 	owner: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
