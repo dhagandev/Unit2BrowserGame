@@ -96,6 +96,7 @@ async function createPureDog(req, res, next) {
 	try {
 		let {dogName, dogGender, dogBreed} = req.body;
 		dog = await dogFun.createNewPureDog(dogName, dogGender, dogBreed, req.user);
+		req.user.dogs.push(dog._id);
 	}
 	catch(error) {
 		console.log(error);
@@ -117,6 +118,7 @@ async function createMixDog(req, res, next) {
 	try {
 		let {dogName, dogGender, dogBreed} = req.body;
 		dog = await dogFun.createNewMixDog(dogName, dogGender, dogBreed, req.user);
+		req.user.dogs.push(dog._id);
 	}
 	catch(error) {
 		console.log(error);
@@ -184,7 +186,6 @@ function petDog(req, res, next) {
 function abandonDog(req, res, next) {
 	Dog.findByIdAndRemove(req.params.id)
 	.then(dog => {
-		console.log(dog);
 		res.redirect('/dogs');
 	})
 	.catch(err => console.log(err));
