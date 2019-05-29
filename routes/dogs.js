@@ -3,6 +3,8 @@ var router = express.Router();
 var dogCtrl = require('../controllers/dogs');
 
 router.get('/', dogCtrl.getAllDogs);
+router.get('/breed', dogCtrl.showBreeding);
+router.get('/learn', dogCtrl.showLearn);
 router.get('/:id', dogCtrl.getOneDog);
 
 router.post('/pure', isLoggedIn, dogCtrl.createPureDog);

@@ -11,7 +11,9 @@ module.exports = {
 	feedDog,
 	waterDog,
 	petDog,
-	abandonDog
+	abandonDog,
+	showBreeding,
+	showLearn
 }
 
 function getAllDogs(req, res, next) {
@@ -189,4 +191,18 @@ function abandonDog(req, res, next) {
 		res.redirect('/dogs');
 	})
 	.catch(err => console.log(err));
+}
+
+function showBreeding(req, res, next) {
+	res.render('genPawsMainPages/breeding', {
+		user: req.user
+	});
+}
+
+function showLearn(req, res, next) {
+	let list = apiScr.getComboLists();
+	res.render('genPawsMainPages/learn', {
+		list,
+		user: req.user
+	});
 }
