@@ -9,6 +9,7 @@ router.get('/:id', dogCtrl.getOneDog);
 
 router.post('/pure', isLoggedIn, dogCtrl.createPureDog);
 router.post('/mix', isLoggedIn, dogCtrl.createMixDog);
+router.post('/breed', isLoggedIn, dogCtrl.createLitter);
 
 router.put('/:id/feed', isLoggedIn, dogCtrl.feedDog);
 router.put('/:id/water', isLoggedIn, dogCtrl.waterDog);

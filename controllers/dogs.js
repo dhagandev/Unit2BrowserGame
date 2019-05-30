@@ -2,6 +2,7 @@ var User = require('../models/user');
 var Dog = require('../models/dog')
 var dogFun = require('../scripts/dogFunctions');
 var apiScr = require('../scripts/apiConsumer');
+var breedFun = require('../scripts/breedFunctions');
 
 const timeUpdateLimit = 5;
 const timedStatDec = 5;
@@ -11,6 +12,7 @@ module.exports = {
 	getOneDog,
 	createPureDog,
 	createMixDog,
+	createLitter,
 	feedDog,
 	waterDog,
 	petDog,
@@ -242,4 +244,26 @@ async function showLearn(req, res, next) {
 		allInfo,
 		user: req.user
 	});
+}
+
+async function createLitter(req, res, next) {
+	let {femaleDog, maleDog} = req.body;
+
+	femaleDog = await Dog.findById(femaleDog)
+		.catch(err => console.log(err));
+	maleDog = await Dog.findById(maleDog)
+		.catch(err => console.log(err));
+
+	if (femaleDog && maleDog) {
+		let puppyCount = dogFun.getRandomIntInc(1, 12);
+
+		for (let i = 0; i < 1; i++) {
+			let pup = breedFun.breedNewDog(femaleDog, maleDog);	
+		}
+
+		res.redirect('/users/' + req.user._id);
+	}
+	else {
+		res.redirect('back');
+	}
 }

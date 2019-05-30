@@ -1,13 +1,18 @@
 Something something breed two dogs together
 
-<select name="femaleDog">
-	<% females.forEach(function(dog) { %>
-		<option value="<%= dog._id %>"> <%= dog.name %> the <%= dog.mainBreed %> </option>
-	<% }) %>
-</select>
 
-<select name="maleDog">
-	<% males.forEach(function(dog) { %>
-		<option value="<%= dog._id %>"> <%= dog.name %> the <%= dog.mainBreed %> </option>
-	<% }) %>
-</select>
+<form id="create-litter" action="/dogs/breed" method="POST">
+	<select name="femaleDog">
+		<% females.forEach(function(dog) { %>
+			<option value="<%= dog._id %>"> <%= dog.name %> the <%= dog.mainBreed %> </option>
+		<% }) %>
+	</select>
+
+	<select name="maleDog">
+		<% males.forEach(function(dog) { %>
+			<option value="<%= dog._id %>"> <%= dog.name %> the <%= dog.mainBreed %> </option>
+		<% }) %>
+	</select>
+
+	<button type="submit" class="btn make-litter">Breed Dogs</button> 
+</form>

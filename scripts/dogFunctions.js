@@ -5,7 +5,8 @@ let apiBreedList = apiScr.getComboLists()[0];
 
 module.exports = {
 	createNewPureDog,
-	createNewMixDog
+	createNewMixDog,
+	getRandomIntInc
 }
 
 async function createNewPureDog(name, gender, breed, user) {
