@@ -5,7 +5,6 @@ module.exports = {
 }
 
 function breedNewDog(female, male) {
-	console.log(female)
 	let mixedGenes = {
 		brain: mixSingleSet(female.genetics.brain, male.genetics.brain),
 		heart: mixSingleSet(female.genetics.heart, male.genetics.heart),
@@ -22,29 +21,25 @@ function breedNewDog(female, male) {
 		pupGender = 'Male';
 	}
 
-	console.log("Female ======")
-	console.log(female.breedPercent)
-	// let breedPercent = determineDogBreed(female.breedPercent, male.breedPercent);
+	let breedPercent = determineDogBreed(JSON.stringify(female.breedPercent), JSON.stringify(male.breedPercent));
 	// console.log(breedPercent);
 }
 
 function determineDogBreed(dbp1, dbp2) {
 	console.log("determineDogBreed")
 
-	console.log(dbp1)
-
 	let dog1HalfPercent = halfPercent(dbp1);
 	let dog2HalfPercent = halfPercent(dbp2);
 
-	// console.log("\n")
-	// console.log(dbp1)
-	// console.log("\n")
-	// console.log(dog1HalfPercent)
-	// console.log("\n")
-	// console.log(dbp2)
-	// console.log("\n")
-	// console.log(dog2HalfPercent)
-	// console.log("\n")
+	console.log("\n dbp1")
+	console.log(dbp1)
+	console.log("\n")
+	console.log(dog1HalfPercent)
+	console.log("\n dbp2")
+	console.log(dbp2)
+	console.log("\n")
+	console.log(dog2HalfPercent)
+	console.log("\n")
 
 	if (dog1HalfPercent.length < dog2HalfPercent.length) {
 		let temp = dog1HalfPercent;
@@ -96,15 +91,20 @@ function breedList(dogList) {
 	console.log("breedList")
 	let list = [];
 	for (let i = 0; i < dogList.length; i++) {
-		list.push(dogList[i][0]);
+		list.push(dogList[i].breed);
 	}
 	return list;
 }
 
 function halfPercent(dogPercent) {
 	console.log("halfPercent")
+	console.log(dogPercent);
 	let newPercent = [];
 	for (let i = 0; i < dogPercent.length; i++) {
+		let breedPer = dogPercent[i];
+
+		console.log("breed per: ==== " + breedPer)
+
 		newPercent.push({breed: dogPercent[i][0], percentage: dogPercent[i][1]/2});
 	}
 	return newPercent;	
