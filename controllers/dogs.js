@@ -258,7 +258,7 @@ async function createLitter(req, res, next) {
 	catch(err) {
 		console.log(err);
 	}
-	
+
 	let litter = [];
 
 	try {
@@ -269,7 +269,7 @@ async function createLitter(req, res, next) {
 			for (let i = 0; i <= puppyCount; i++) {
 				let pup = await breedFun.breedNewDog(femaleDog, maleDog, req.user, i);
 				litter.push(pup);
-				req.user.dogs.push(dog._id);
+				req.user.dogs.push(pup._id);
 				req.user.save();
 			}
 		}
