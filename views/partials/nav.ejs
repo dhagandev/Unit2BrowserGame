@@ -5,6 +5,10 @@
 <a href="/dogs/learn">Learn Breeds</a>
 
 <%if (user) { %>
+	<a href="/users/<%= user._id %>">Your Profile</a>
+<% } %>
+
+<%if (user) { %>
 	<a href="/logout">Log Out</a>
 <% } else { %>
 	<a href="/auth/google"> Log in with Google</a>

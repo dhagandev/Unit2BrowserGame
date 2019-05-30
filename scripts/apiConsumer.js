@@ -16,7 +16,8 @@ module.exports = {
 	getDAPIFullBreedList,
 	makeComboList,
 	getComboLists,
-	getImage
+	getImage,
+	dapiGetInfo
 }
 
 let dceoList = [];
@@ -112,7 +113,25 @@ async function getImage(breed) {
 		const image = await axios.get(opt.url);
 		return image.data.message;
 	}
-	catch {
+	catch(error) {
+		console.log(error);
+	}
+}
+
+async function dapiGetInfo(breed) {
+	let opt = {
+		url: 'https://api.thedogapi.com/v1/breeds/search',
+		headers: dapiHeader,
+		params: {
+			q: breed
+		}
+	}
+
+	try {
+		const dapiResult = await axios.get(opt.url, opt);
+		return dapiResult.data;
+	}
+	catch(error) {
 		console.log(error);
 	}
 }

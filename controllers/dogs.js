@@ -3,6 +3,9 @@ var Dog = require('../models/dog')
 var dogFun = require('../scripts/dogFunctions');
 var apiScr = require('../scripts/apiConsumer');
 
+const timeUpdateLimit = 5;
+const timedStatDec = 5;
+
 module.exports = {
 	getAllDogs,
 	getOneDog,
@@ -52,26 +55,26 @@ function timedUpdate(dog) {
 
 	let modelUpdated = false;
 
-	if (feedTime >= 5) {
+	if (feedTime >= timeUpdateLimit) {
 		modelUpdated = true;
 		dog.lastFed = Date.now();
-		dog.hunger -= 5;
+		dog.hunger -= timedStatDec;
 		if (dog.hunger < 0) {
 			dog.hunger = 0;
 		}
 	}
-	if (waterTime >= 5) {
+	if (waterTime >= timeUpdateLimit) {
 		modelUpdated = true;
 		dog.lastDrank = Date.now();
-		dog.thirst -= 5;
+		dog.thirst -= timedStatDec;
 		if (dog.thirst < 0) {
 			dog.thirst = 0;
 		}
 	}
-	if (petTime >= 5) {
+	if (petTime >= timeUpdateLimit) {
 		modelUpdated = true;
 		dog.lastPet = Date.now();
-		dog.happiness -= 5;
+		dog.happiness -= timedStatDec;
 		if (dog.happiness < 0) {
 			dog.happiness = 0;
 		}
@@ -99,6 +102,7 @@ async function createPureDog(req, res, next) {
 		let {dogName, dogGender, dogBreed} = req.body;
 		dog = await dogFun.createNewPureDog(dogName, dogGender, dogBreed, req.user);
 		req.user.dogs.push(dog._id);
+		req.user.save();
 	}
 	catch(error) {
 		console.log(error);
@@ -121,6 +125,7 @@ async function createMixDog(req, res, next) {
 		let {dogName, dogGender, dogBreed} = req.body;
 		dog = await dogFun.createNewMixDog(dogName, dogGender, dogBreed, req.user);
 		req.user.dogs.push(dog._id);
+		req.user.save();
 	}
 	catch(error) {
 		console.log(error);
@@ -194,15 +199,47 @@ function abandonDog(req, res, next) {
 }
 
 function showBreeding(req, res, next) {
-	res.render('genPawsMainPages/breeding', {
-		user: req.user
-	});
+	if (req.user) {
+		req.user
+		.populate('dogs')
+		.execPopulate()
+		.then(user => {
+			let females = [];
+			let males = [];
+			for (let i = 0; i < user.dogs.length; i++) {
+				if (user.dogs[i].gender === 'Female') {
+					females.push(user.dogs[i]);
+				}
+				else {
+					males.push(user.dogs[i]);
+				}
+			}
+			res.render('genPawsMainPages/breeding', {
+				user: req.user,
+				females,
+				males
+			});
+		})
+		.catch(err => console.log(err))
+	}
 }
 
-function showLearn(req, res, next) {
-	let list = apiScr.getComboLists();
+async function showLearn(req, res, next) {
+	let list = apiScr.getComboLists()[0];
+	let allInfo = [];
+
+	for (let i = 0; i < list.length; i++) {
+		try {
+			let dogInfo = await apiScr.dapiGetInfo(list[i]);
+			allInfo.push(dogInfo[0]);
+		}
+		catch(error) {
+			console.log(error)
+		}
+	}
+
 	res.render('genPawsMainPages/learn', {
-		list,
+		allInfo,
 		user: req.user
 	});
 }

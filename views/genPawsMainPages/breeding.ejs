@@ -3,4 +3,10 @@
 
 	<h2>Breeding Page</h2>
 
+	<% if (user) { %>
+		<%- include('../genPawsPageViews/setBreeding') %>
+	<% } else { %>
+		<%- include('../genPawsPageViews/loggedin') %>
+	<% } %>
+
 <%- include('../partials/footer') %>

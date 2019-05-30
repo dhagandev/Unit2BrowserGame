@@ -1,0 +1,19 @@
+<% allInfo.forEach((dog) => { %>
+
+	<div class = "info-dog-name">
+		The <%= dog.name %>
+	</div>
+
+	<div class = "info-gen">
+		Weight: <%= dog.weight.imperial %> lbs
+		Height: <%= dog.height.imperial %> in.
+		Bred for: <%= dog.bred_for %>
+		<% if (dog.origin) { %>
+			Originated in <%= dog.origin %>
+		<% } %>
+		Belongs to the <%= dog.breed_group %> breeding group
+		Life Span is <%= dog.life_span %>
+		Temperament: <%= dog.temperament %>
+	</div>
+
+<% }) %>
