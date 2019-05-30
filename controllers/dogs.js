@@ -249,21 +249,39 @@ async function showLearn(req, res, next) {
 async function createLitter(req, res, next) {
 	let {femaleDog, maleDog} = req.body;
 
+	try {
 	femaleDog = await Dog.findById(femaleDog)
 		.catch(err => console.log(err));
 	maleDog = await Dog.findById(maleDog)
 		.catch(err => console.log(err));
-
-	if (femaleDog && maleDog) {
-		let puppyCount = dogFun.getRandomIntInc(1, 12);
-
-		for (let i = 0; i < 1; i++) {
-			let pup = breedFun.breedNewDog(femaleDog, maleDog);	
-		}
-
-		res.redirect('/users/' + req.user._id);
 	}
-	else {
+	catch(err) {
+		console.log(err);
+	}
+	
+	let litter = [];
+
+	try {
+		if (femaleDog && maleDog) {
+			let puppyCount = Math.floor(Math.random() * Math.floor(11));
+
+			console.log("WHAT " + puppyCount)
+			for (let i = 0; i <= puppyCount; i++) {
+				let pup = await breedFun.breedNewDog(femaleDog, maleDog, req.user, i);
+				litter.push(pup);
+				req.user.dogs.push(dog._id);
+				req.user.save();
+			}
+		}
+	}
+	catch(err) {
+		console.log(err);
 		res.redirect('back');
 	}
+
+	litter.forEach(pup => {
+		pup.save()
+	})
+			
+	res.redirect('/users/' + req.user._id);
 }

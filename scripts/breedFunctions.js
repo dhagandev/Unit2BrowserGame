@@ -1,10 +1,13 @@
+var mongoose = require('mongoose');
 var Dog = require('../models/dog');
+var apiScr = require('../scripts/apiConsumer');
+var dogFun = require('../scripts/dogFunctions');
 
 module.exports = {
 	breedNewDog
 }
 
-function breedNewDog(female, male) {
+async function breedNewDog(female, male, user, pupIdx) {
 	let mixedGenes = {
 		brain: mixSingleSet(female.genetics.brain, male.genetics.brain),
 		heart: mixSingleSet(female.genetics.heart, male.genetics.heart),
@@ -21,25 +24,37 @@ function breedNewDog(female, male) {
 		pupGender = 'Male';
 	}
 
-	let breedPercent = determineDogBreed(JSON.stringify(female.breedPercent), JSON.stringify(male.breedPercent));
-	// console.log(breedPercent);
+	let breedPercent = determineDogBreed(female.breedPercent.toObject(), male.breedPercent.toObject());
+	
+	let newDog = new Dog();
+	newDog.name = female.name + " x " + male.name + " Puppy " + pupIdx;
+	newDog.gender = pupGender;
+	newDog.mainBreed = breedPercent[0].breed;
+	newDog.breedPercent = breedPercent;
+	newDog.mom = female._id;
+	newDog.dad = male._id;
+	newDog.owner = user;
+	newDog.genetics = mixedGenes;
+	newDog.geneticHealth.brain = dogFun.healthFocusSet(newDog.genetics.brain);
+	newDog.geneticHealth.heart = dogFun.healthFocusSet(newDog.genetics.heart);
+	newDog.geneticHealth.lungs = dogFun.healthFocusSet(newDog.genetics.lungs);
+	newDog.geneticHealth.joints = dogFun.healthFocusSet(newDog.genetics.joints);
+	newDog.geneticHealth.coat = dogFun.healthFocusSet(newDog.genetics.coat);
+
+	try {
+		console.log("MAIN BREED DEBUGGER =========")
+		newDog.img = await apiScr.getImage(breedPercent[0].breed);
+
+	} catch (error) {
+		console.log(error);
+	}
+
+	return newDog;
 }
 
 function determineDogBreed(dbp1, dbp2) {
-	console.log("determineDogBreed")
-
 	let dog1HalfPercent = halfPercent(dbp1);
 	let dog2HalfPercent = halfPercent(dbp2);
-
-	console.log("\n dbp1")
-	console.log(dbp1)
-	console.log("\n")
-	console.log(dog1HalfPercent)
-	console.log("\n dbp2")
-	console.log(dbp2)
-	console.log("\n")
-	console.log(dog2HalfPercent)
-	console.log("\n")
 
 	if (dog1HalfPercent.length < dog2HalfPercent.length) {
 		let temp = dog1HalfPercent;
@@ -73,22 +88,26 @@ function determineDogBreed(dbp1, dbp2) {
 }
 
 function sortBreedPercentage(pupPercent) {
-	console.log("sortBreedPercentage")
-	let sorted = [];
-	let numVals = [];
-	for (let i = 0; i < pupPercent.length; i++) {
-		numVals.push(pupPercent[i][1]);
+	let sorted = pupPercent.sort((ele1, ele2) => {
+		if (ele1.percentage < ele2.percentage) {
+			return -1;
+		}
+		return 1;
+	});
+
+	let idx = 0;
+	while(idx < sorted.length && sorted[idx].percentage < 1) {
+		let removeBreed = sorted[idx];
+		let main = sorted[sorted.length - 1];
+		main.percentage += removeBreed.percentage;
+		sorted.splice(idx, 1);
+		idx++;
 	}
-	let sortedNumVals = numVals.sort();
-	for (let i = 0; i < sortedNumVals.length; i++) {
-		let idx = numVals.indexOf(sortedNumVals[i])
-		sorted.push(pupPercent[idx]);
-	}
+
 	return sorted.reverse();
 }
 
 function breedList(dogList) {
-	console.log("breedList")
 	let list = [];
 	for (let i = 0; i < dogList.length; i++) {
 		list.push(dogList[i].breed);
@@ -97,15 +116,17 @@ function breedList(dogList) {
 }
 
 function halfPercent(dogPercent) {
-	console.log("halfPercent")
-	console.log(dogPercent);
 	let newPercent = [];
 	for (let i = 0; i < dogPercent.length; i++) {
 		let breedPer = dogPercent[i];
 
-		console.log("breed per: ==== " + breedPer)
+		let halfBreed = {
+			_id: new mongoose.mongo.ObjectId(),
+			breed: dogPercent[i].breed,
+			percentage: dogPercent[i].percentage/2
+		}
 
-		newPercent.push({breed: dogPercent[i][0], percentage: dogPercent[i][1]/2});
+		newPercent.push(halfBreed);
 	}
 	return newPercent;	
 }

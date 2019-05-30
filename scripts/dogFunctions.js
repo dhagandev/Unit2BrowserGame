@@ -6,6 +6,7 @@ let apiBreedList = apiScr.getComboLists()[0];
 module.exports = {
 	createNewPureDog,
 	createNewMixDog,
+	healthFocusSet,
 	getRandomIntInc
 }
 
