@@ -1,34 +1,51 @@
+<div class="ind-dog-info">
+	<div class="ind-dog-title">
+		<div class="ind-dog-name"><%= dog.name %></div>
+		<div class="the-class"> the </div>
+		<% if(dog.gender === 'female') { %>
+			<div class="ind-dog-gender female"><%= dog.gender %></div>
+		<% } else { %>
+			<div class="ind-dog-gender male"><%= dog.gender %></div>
+		<% } %>
+		<div class="ind-dog-breed"><%= dog.mainBreed %></div>
+	</div>
+
 <img src="<%= dog.img %>" alt="Your dog's picture">
-<%= dog.name %>
-<%= dog.gender %>
-<%= dog.mainBreed %>
-<%= dog.breedPercent %>
 
-<br><br><br>
+<div class="dog-stats">
+	<div class="hunger">Hunger: <%= dog.hunger %></div>
+	<div class="thirst">Thirst: <%= dog.thirst %></div>
+	<div class="happiness">Happiness:<%= dog.happiness %></div>
+</div>
 
-<%= dog.hunger %>
-<%= dog.thirst %>
-<%= dog.happiness %>
+<div class="breedPercents">
+	<% dog.breedPercent.forEach((breedPer) => { %>
+		<div class="indBreedPer"><%= breedPer.percentage %>% <%= breedPer.breed %></div>
+	<% }) %>
+</div>
 
-<br><br><br>
+<div class="health">
+	<div class="brain">Brain:
+		<div class="health-val"><%= dog.geneticHealth.brain %></div>
+	</div>
 
-<%= dog.owner %>
-
-<br><br><br>
-
-<%= dog.studding %>
-<%= dog.mom %>
-<%= dog.dad %>
-
-
-<br><br><br>
-kids
-<%= dog.children %>
-
-<br><br><br>
-
-<%= dog.genetics %>
-<%= dog.geneticHealth %>
-<%= dog.owner %>
+	<div class="heart">Heart: 
+		<div class="health-val"><%= dog.geneticHealth.heart %></div>
+	</div>
+	
+	<div class="lungs">Lungs: 
+		<div class="health-val"><%= dog.geneticHealth.lungs %></div>
+	</div>
+	
+	<div class="joints">Joints: 
+		<div class="health-val"><%= dog.geneticHealth.joints %></div>
+	</div>
+	
+	<div class="coat">Coat: 
+		<div class="health-val"><%= dog.geneticHealth.coat %></div>
+	</div>
+</div>
 
 <%- include('./indDogInteractions') %>
+
+</div>

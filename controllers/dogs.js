@@ -195,6 +195,9 @@ function petDog(req, res, next) {
 }
 
 function abandonDog(req, res, next) {
+	let index = req.user.dogs.indexOf(req.params.id)
+	req.user.dogs.splice(index, 1);
+	req.user.save();
 	Dog.findByIdAndRemove(req.params.id)
 	.then(dog => {
 		res.redirect('/dogs');

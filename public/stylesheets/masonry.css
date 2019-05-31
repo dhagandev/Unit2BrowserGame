@@ -3,6 +3,8 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	width: 90vw;
+	align:center;
+	margin: 3em auto;
 }
 
 .dog-card {

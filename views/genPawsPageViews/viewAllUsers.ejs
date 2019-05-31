@@ -1,7 +1,25 @@
-<% users.forEach((user) => { %>
-
-	<a href="/users/<%= user._id %>">
-		<%= user.name %>
-	</a>
-
-<% }) %>
+<div class = "all-users-table">
+	
+	<% if (user) { %>
+		<table>
+			<thead>
+				<tr>
+					<th>User</th>
+					<th>Dogs</th>
+					<th>Money</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% users.forEach((user) => { %>
+					<tr onclick="window.location='/users/<%= user._id %>';">
+						<td><%= user.name %></td>
+						<td><%= user.dogs.length %></td>
+						<td>$<%= user.money %></td>
+					</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	<% } else { %>
+		<div class="no-table">Oh no! We have no members!</div>
+	<% } %>
+</div>
