@@ -1,15 +1,21 @@
-<a href="/home">Home</a>
-<a href="/dogs">All Dogs</a>
-<a href="/users">All Users</a>
-<a href="/dogs/breed">Get Puppies</a>
-<a href="/dogs/learn">Learn Breeds</a>
+<div class ="nav-bar">
 
-<%if (user) { %>
-	<a href="/users/<%= user._id %>">Your Profile</a>
-<% } %>
+	<a href="/home">Home</a>
+	<a href="/dogs">All Dogs</a>
+	<a href="/users">All Users</a>
+	<a href="/dogs/breed">Get Puppies</a>
+	<a href="/dogs/learn">Learn Breeds</a>
 
-<%if (user) { %>
-	<a href="/logout">Log Out</a>
-<% } else { %>
-	<a href="/auth/google"> Log in with Google</a>
-<% } %>
+	<div class="user-based">
+		<% if (user) { %>
+			<a href="/users/<%= user._id %>">Your Profile</a>
+		<% } %>
+
+		<% if (user) { %>
+			<a href="/logout">Log Out</a>
+		<% } else { %>
+			<a href="/auth/google"> Log in with Google</a>
+		<% } %>
+	</div>
+
+</div>

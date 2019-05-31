@@ -1,7 +1,10 @@
-body {
+html, body, main {
 	margin: 0;
 	background: #DBECF4;
+	height: 100%;
+	width: 100%;
 }
+
 
 .main-page-label {
 	font-size: 48px;
