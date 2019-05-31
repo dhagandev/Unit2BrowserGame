@@ -1,0 +1,41 @@
+.nav-bar {
+	margin: 0px;
+    padding: 0px;
+    background: #5E5856;
+    font-family: 'Fontdiner Swanky', cursive;
+    height: 90px;
+}
+
+.nav-bar a {
+	text-decoration: none;
+	float: left;
+    font-size: 1.75em;
+    height: 100%;
+    line-height: 90px;
+    padding: 0 30px;
+}
+
+.nav-bar a:link {
+    color: #E7F1FA;
+}
+
+.nav-bar a:visited {
+    color: #E7F1FA;
+}
+
+.nav-bar a:hover {
+	color: #A5C5D8;
+	 -webkit-transform: rotate(-10deg) scale(1.2);
+	 -moz-transform: rotate(-10deg) scale(1.2);
+	 -o-transform: rotate(-10deg) scale(1.2);
+}
+
+.nav-bar a:active {
+	 -webkit-transform: rotate(-10deg) scale(1.2);
+	 -moz-transform: rotate(-10deg) scale(1.2);
+	 -o-transform: rotate(-10deg) scale(1.2);
+}
+
+.user-based {
+	float: right;
+}

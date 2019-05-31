@@ -1,2 +1,15 @@
 <%= response.name %>
 <%= response.email %>
+
+<% response.dogs.forEach((dog) => { %>
+	<a href="/dogs/<%= dog._id %>">
+		<div class="dog-card">
+			<div class="dog-card-img">
+				<img src="<%= dog.img %>" alt="A dog's picture">
+			</div>
+			<div class="dog-card-name">
+				<%= dog.name %>
+			</div>
+		</div>
+	</a>
+<% }) %>

@@ -31,8 +31,12 @@ async function breedNewDog(female, male, user, pupIdx) {
 	newDog.gender = pupGender;
 	newDog.mainBreed = breedPercent[0].breed;
 	newDog.breedPercent = breedPercent;
-	newDog.mom = female._id;
-	newDog.dad = male._id;
+	newDog.mom = female;
+	newDog.dad = male;
+
+	female.children.push(newDog);
+	male.children.push(newDog);
+
 	newDog.owner = user;
 	newDog.genetics = mixedGenes;
 	newDog.geneticHealth.brain = dogFun.healthFocusSet(newDog.genetics.brain);
