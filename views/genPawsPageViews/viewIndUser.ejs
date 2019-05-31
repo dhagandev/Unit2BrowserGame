@@ -1,9 +1,12 @@
-<%= response.name %>
-<%= response.email %>
+<% if(user) { console.log("if") %>
+	<div class="welcome-user"> Hello <%= genUser.name %>! </div>
+<% } else { console.log("else")%>
+	<div class="meet-and-greet"> Meet <%= genUser.name %>! </div>
+<% } %>
 
-<% response.dogs.forEach((dog) => { %>
+<% genUser.dogs.forEach((dog) => { %>
 	<a href="/dogs/<%= dog._id %>">
-		<div class="dog-card">
+		<div class="dog-card user-dog-card">
 			<div class="dog-card-img">
 				<img src="<%= dog.img %>" alt="A dog's picture">
 			</div>

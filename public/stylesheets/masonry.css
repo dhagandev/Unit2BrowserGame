@@ -12,18 +12,44 @@
 	font-weight: 900;
 	font-size: 2rem;
 	font-style: italic;
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
 }
 
 .dog-card img {
+	z-index: 1;
 	border-radius: 20px;
 	max-width: 100%;
-	transition: .8s opacity;
+	min-width: 200px;
+	display: block;
 }
 
-.dog-card:hover img {
-	opacity: 0.3;
+.dog-card:hover img{
+	opacity: .4;
 }
 
-.dog-card:hover img:hover {
+.dog-card-name {
+	z-index: 10;
+	position: absolute;
+	text-align: center;
+	
+	top: 10%;
+	right: 0;
+	left: 0;
+	height: 100%;
+
+	font-weight: bold;
+	font-size: 48px;
+	overflow: wrap;
+
+	opacity: 0;
+}
+
+.dog-card:hover .dog-card-name {
 	opacity: 1;
+}
+
+.dog-card a:link, .dog-card a:hover, .dog-card a:visited, .dog-card a:active {
+    color: #5E5856;
 }

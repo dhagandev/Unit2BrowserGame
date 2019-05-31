@@ -36,6 +36,8 @@ async function breedNewDog(female, male, user, pupIdx) {
 
 	female.children.push(newDog);
 	male.children.push(newDog);
+	female.save();
+	male.save();
 
 	newDog.owner = user;
 	newDog.genetics = mixedGenes;

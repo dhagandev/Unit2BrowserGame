@@ -39,11 +39,19 @@ function getAllUsers(req, res, next) {
 
 function getOneUser(req, res, next) {
 	User.findById(req.params.id)
-	.then(response => {
-		res.render('genPawsMainPages/indUser', {
-			response,
-			user: req.user
-		});
+	.then(genUser => {
+		genUser
+		.populate('dogs')
+		.execPopulate()
+		.then(genUser => {
+			res.render('genPawsMainPages/indUser', {
+				genUser,
+				user: req.user
+			});
+		})
+		.catch(error => {
+			console.log(error);
+		})
 	})
 	.catch(error => {
 		console.log(error);
