@@ -1,3 +1,12 @@
 body {
 	margin: 0;
+	background: #DBECF4;
+}
+
+.main-page-label {
+	font-size: 48px;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	margin: 10px 0;
 }

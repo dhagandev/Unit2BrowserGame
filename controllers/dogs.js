@@ -235,7 +235,9 @@ async function showLearn(req, res, next) {
 	for (let i = 0; i < list.length; i++) {
 		try {
 			let dogInfo = await apiScr.dapiGetInfo(list[i]);
-			allInfo.push(dogInfo[0]);
+			if (dogInfo) {
+				allInfo.push(dogInfo[0]);
+			}
 		}
 		catch(error) {
 			console.log(error)

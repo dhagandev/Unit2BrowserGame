@@ -1,19 +1,21 @@
 <% allInfo.forEach((dog) => { %>
 
-	<div class = "info-dog-name">
-		The <%= dog.name %>
-	</div>
+	<div class = "all-info-card">
+		<div class = "info-dog-name">
+			The <%= dog.name %>
+		</div>
 
-	<div class = "info-gen">
-		Weight: <%= dog.weight.imperial %> lbs
-		Height: <%= dog.height.imperial %> in.
-		Bred for: <%= dog.bred_for %>
-		<% if (dog.origin) { %>
-			Originated in <%= dog.origin %>
-		<% } %>
-		Belongs to the <%= dog.breed_group %> breeding group
-		Life Span is <%= dog.life_span %>
-		Temperament: <%= dog.temperament %>
+		<div class = "info-gen">
+			<div class="weight info-cat">Weight: <div class="info-gen-value"><%= dog.weight.imperial %> lbs </div>
+			<div class="height info-cat">Height: <div class="info-gen-value"> <%= dog.height.imperial %> in. </div></div>
+			<div class="bred info-cat">Bred for: <div class="info-gen-value"> <%= dog.bred_for %></div></div>
+			<% if (dog.origin) { %>
+				<div class="origin info-cat">Originated in <div class="info-gen-value"><%= dog.origin %></div></div>
+			<% } %>
+			<div class="breed-group info-cat">Belongs to the <div class="info-gen-value"> <%= dog.breed_group %></div> breeding group</div>
+			<div class="life-span info-cat">Life Span is <div class="info-gen-value"><%= dog.life_span %></div></div>
+			<div class="temperament info-cat">Temperament: <div class="info-gen-value"><%= dog.temperament %></div></div>
+		</div>
 	</div>
 
 <% }) %>
