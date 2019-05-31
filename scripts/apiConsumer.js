@@ -102,12 +102,23 @@ function getComboLists() {
 }
 
 async function getImage(breed) {
+	console.log("===== DEBUG GET IMAGE. FOR LIKE THE MILLIONTH TIME ====")
+	if (comboListDAPI.length === 0 || comboListDCEO.length === 0) {
+		getComboLists();
+	}
+
+	console.log(comboListDAPI);
 	let listIdx = comboListDAPI.indexOf(breed);
+	console.log(listIdx)
 	let dceoBreed = comboListDCEO[listIdx];
+	console.log(dceoBreed)
+
 	let opt = {
 		url: 'https://dog.ceo/api/breed/' + dceoBreed + '/images/random',
 		headers: dceoHeader
 	}
+
+	console.log(opt.url);
 
 	try {
 		const image = await axios.get(opt.url);

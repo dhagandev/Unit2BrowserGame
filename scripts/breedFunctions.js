@@ -66,10 +66,18 @@ function determineDogBreed(dbp1, dbp2) {
 	let dog1List = breedList(dog1HalfPercent);
 	let dog2List = breedList(dog2HalfPercent);
 
+	console.log("list 1 is =======================")
+	console.log(dog1List)
+	console.log("list 2 ==========================")
+	console.log(dog2List)
+
 	for (let i = 0; i < dog1List.length; i++) {
 		if(dog2List.includes(dog1List[i])) {
+			console.log("dog list 2 has the dog")
 			let idx = dog2List.indexOf(dog1List[i]);
-			pupPercent.push([dog1List[i], dog1HalfPercent[i][1] + dog2HalfPercent[idx][1]]);
+			console.log("dog is at this index " + idx)
+			pupPercent.push([dog1List[i], dog1HalfPercent[i].percentage + dog2HalfPercent[idx].percentage]);
+			console.log(pupPercent[pupPercent.length - 1])
 		}
 		else {
 			pupPercent.push(dog1HalfPercent[i]);
@@ -81,6 +89,9 @@ function determineDogBreed(dbp1, dbp2) {
 			pupPercent.push(dog2HalfPercent[i]);
 		}
 	}
+
+	console.log("what is pup percent")
+	console.log(pupPercent)
 
 	pupPercent = sortBreedPercentage(pupPercent);
 
@@ -95,14 +106,15 @@ function sortBreedPercentage(pupPercent) {
 		return 1;
 	});
 
-	let idx = 0;
-	while(idx < sorted.length && sorted[idx].percentage < 1) {
-		let removeBreed = sorted[idx];
-		let main = sorted[sorted.length - 1];
-		main.percentage += removeBreed.percentage;
-		sorted.splice(idx, 1);
-		idx++;
-	}
+	sorted.forEach(breedPercent => {
+		console.log("Debugging the delete of data too small")
+		console.log(breedPercent)
+		if (breedPercent.percentage < 1) {
+			sorted[sorted.length - 1].percentage += breedPercent.percentage;
+			let index = sorted.indexOf(breedPercent);
+			sorted.splice(index, 1);
+		}
+	})
 
 	return sorted.reverse();
 }
@@ -128,6 +140,9 @@ function halfPercent(dogPercent) {
 
 		newPercent.push(halfBreed);
 	}
+
+	console.log("new percent is ");
+	console.log(newPercent);
 	return newPercent;	
 }
 
