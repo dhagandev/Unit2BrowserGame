@@ -1,0 +1,32 @@
+.ind-dog-info {
+	width: 100%;
+}
+
+.ind-dog-name, .ind-dog-gender, .ind-dog-breed {
+	display: inline-block;
+	font-size: 64px;
+}
+
+.the-class {
+	display: inline-block;
+	font-size: 48px;
+}
+
+.health-val {
+	display: inline-block;
+}
+
+.ind-dog-name, .ind-dog-breed {
+	font-weight: bold;
+}
+.ind-dog-breed {
+	font-style: italic;
+}
+
+.ind-dog-gender .female {
+	color: #FFC0CB;
+}
+
+.ind-dog-gender .male {
+	color: #0000FF;
+}

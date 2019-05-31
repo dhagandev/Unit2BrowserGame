@@ -1,0 +1,38 @@
+.no-table {
+	font-size: 36px;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
+	margin: 50px 0;
+}
+
+table {
+	width: 30%;
+	font-size: 24px;
+	align:center;
+	margin: 3em auto;
+}
+
+th {
+	background: #A5C5D8;
+	height: 4em;
+	font-size: 36px;
+}
+
+tbody {
+	background: #E7F1FA;
+}
+
+tr {
+	height: 3em;
+}
+
+tr:hover {
+	background: #DBECF4;
+}
+
+td {
+	text-align: center;
+	vertical-align: middle;
+}
