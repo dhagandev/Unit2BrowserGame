@@ -102,7 +102,9 @@ async function createPureDog(req, res, next) {
 
 	try {
 		let {dogName, dogGender, dogBreed} = req.body;
-		dog = await dogFun.createNewPureDog(dogName, dogGender, dogBreed, req.user);
+		console.log("Dog gender?? =========")
+		console.log(dogGender)
+		dog = await dogFun.createNewPureDog(dogName, dogGender.toLowerCase(), dogBreed, req.user);
 		req.user.dogs.push(dog._id);
 		req.user.save();
 	}
@@ -125,7 +127,7 @@ async function createMixDog(req, res, next) {
 
 	try {
 		let {dogName, dogGender, dogBreed} = req.body;
-		dog = await dogFun.createNewMixDog(dogName, dogGender, dogBreed, req.user);
+		dog = await dogFun.createNewMixDog(dogName, dogGender.toLowerCase(), dogBreed, req.user);
 		req.user.dogs.push(dog._id);
 		req.user.save();
 	}
@@ -209,7 +211,7 @@ function showBreeding(req, res, next) {
 			let females = [];
 			let males = [];
 			for (let i = 0; i < user.dogs.length; i++) {
-				if (user.dogs[i].gender === 'Female') {
+				if (user.dogs[i].gender === 'female') {
 					females.push(user.dogs[i]);
 				}
 				else {
@@ -264,8 +266,6 @@ async function createLitter(req, res, next) {
 	try {
 		if (femaleDog && maleDog) {
 			let puppyCount = Math.floor(Math.random() * Math.floor(11));
-
-			console.log("WHAT " + puppyCount)
 			for (let i = 0; i <= 1; i++) {
 				let pup = await breedFun.breedNewDog(femaleDog, maleDog, req.user, i);
 				litter.push(pup);

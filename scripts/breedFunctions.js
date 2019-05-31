@@ -18,10 +18,10 @@ async function breedNewDog(female, male, user, pupIdx) {
 
 	let pupGender = Math.random();
 	if (pupGender < .5) {
-		pupGender = 'Female';
+		pupGender = 'female';
 	}
 	else {
-		pupGender = 'Male';
+		pupGender = 'male';
 	}
 
 	let breedPercent = determineDogBreed(female.breedPercent.toObject(), male.breedPercent.toObject());
@@ -42,7 +42,6 @@ async function breedNewDog(female, male, user, pupIdx) {
 	newDog.geneticHealth.coat = dogFun.healthFocusSet(newDog.genetics.coat);
 
 	try {
-		console.log("MAIN BREED DEBUGGER =========")
 		newDog.img = await apiScr.getImage(breedPercent[0].breed);
 
 	} catch (error) {
@@ -66,18 +65,11 @@ function determineDogBreed(dbp1, dbp2) {
 	let dog1List = breedList(dog1HalfPercent);
 	let dog2List = breedList(dog2HalfPercent);
 
-	console.log("list 1 is =======================")
-	console.log(dog1List)
-	console.log("list 2 ==========================")
-	console.log(dog2List)
-
 	for (let i = 0; i < dog1List.length; i++) {
 		if(dog2List.includes(dog1List[i])) {
-			console.log("dog list 2 has the dog")
 			let idx = dog2List.indexOf(dog1List[i]);
-			console.log("dog is at this index " + idx)
-			pupPercent.push([dog1List[i], dog1HalfPercent[i].percentage + dog2HalfPercent[idx].percentage]);
-			console.log(pupPercent[pupPercent.length - 1])
+			let breed = {breed: dog1List[i], percentage: dog1HalfPercent[i].percentage + dog2HalfPercent[idx].percentage};
+			pupPercent.push(breed);
 		}
 		else {
 			pupPercent.push(dog1HalfPercent[i]);
@@ -89,9 +81,6 @@ function determineDogBreed(dbp1, dbp2) {
 			pupPercent.push(dog2HalfPercent[i]);
 		}
 	}
-
-	console.log("what is pup percent")
-	console.log(pupPercent)
 
 	pupPercent = sortBreedPercentage(pupPercent);
 
@@ -107,8 +96,6 @@ function sortBreedPercentage(pupPercent) {
 	});
 
 	sorted.forEach(breedPercent => {
-		console.log("Debugging the delete of data too small")
-		console.log(breedPercent)
 		if (breedPercent.percentage < 1) {
 			sorted[sorted.length - 1].percentage += breedPercent.percentage;
 			let index = sorted.indexOf(breedPercent);
@@ -141,8 +128,6 @@ function halfPercent(dogPercent) {
 		newPercent.push(halfBreed);
 	}
 
-	console.log("new percent is ");
-	console.log(newPercent);
 	return newPercent;	
 }
 
