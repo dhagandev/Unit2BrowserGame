@@ -271,7 +271,7 @@ async function createLitter(req, res, next) {
 	try {
 		if (femaleDog && maleDog) {
 			let puppyCount = Math.floor(Math.random() * Math.floor(11));
-			for (let i = 0; i <= 1; i++) {
+			for (let i = 0; i <= puppyCount; i++) {
 				let pup = await breedFun.breedNewDog(femaleDog, maleDog, req.user, i);
 				litter.push(pup);
 				req.user.dogs.push(pup._id);
