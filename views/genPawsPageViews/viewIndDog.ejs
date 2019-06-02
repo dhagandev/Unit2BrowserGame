@@ -10,12 +10,22 @@
 		<div class="ind-dog-breed"><%= dog.mainBreed %></div>
 	</div>
 
-<img src="<%= dog.img %>" alt="Your dog's picture">
+<div class="dinfo">
+	<div id="columns">
+		<figure>
+			<img src="<%= dog.img %>" alt="Your dog's picture">
+			<figcaption></figcaption>
+		</figure>
+	</div>
 
-<div class="dog-stats">
-	<div class="hunger">Hunger: <%= dog.hunger %></div>
-	<div class="thirst">Thirst: <%= dog.thirst %></div>
-	<div class="happiness">Happiness:<%= dog.happiness %></div>
+	<div class="dog-stats">
+		<div class="meter hunger">
+			<span style="width: <%=dog.hunger%>"/>
+		</div>
+		<div class="hunger">Hunger: <%= dog.hunger %></div>
+		<div class="thirst">Thirst: <%= dog.thirst %></div>
+		<div class="happiness">Happiness:<%= dog.happiness %></div>
+	</div>
 </div>
 
 <div class="breedPercents">

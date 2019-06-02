@@ -4,15 +4,13 @@
 	<div class="main-page-label meet-and-greet"> Meet <%= genUser.name %>! </div>
 <% } %>
 
-<% genUser.dogs.forEach((dog) => { %>
-	<div class="dog-card">
-		<a href="/dogs/<%= dog._id %>">
-			<div class="dog-card-img">
-				<img src="<%= dog.img %>" alt="A dog's picture">
-			</div>
-			<div class="dog-card-name">
-				<%= dog.name %>
-			</div>
+<div id="columns">
+	<% genUser.dogs.forEach((dog) => { %>
+		<a href="/dogs/<%= dog._id %>" >
+			<figure>
+				<img src="<%= dog.img %>">
+				<figcaption><%= dog.name %></figcaption>
+			</figure>
 		</a>
-	</div>
-<% }) %>
+	<% }) %>
+</div>

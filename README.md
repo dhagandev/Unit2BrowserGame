@@ -46,3 +46,9 @@ https://dry-meadow-93178.herokuapp.com/
 * Logged in Activity (frequency)
 * Change dog names
 * Change displayed names for users
+* Death of neglected dogs
+* Make the genetic health matter in some way
+* More appropriate decrementation of health values
+* Improved API integration between the two APIs - get more dog breeds as options
+* Ability to search, filter, and sort dogs
+* Ability to search, filter, and sort users

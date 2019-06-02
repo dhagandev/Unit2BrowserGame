@@ -1,0 +1,119 @@
+.card-form {
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+  height: 200px;
+  width: 500px;
+}
+
+.form-title {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80px;
+	font-size: 24px;
+	font-weight: bold;
+	background: #27ae60;
+	border-radius: 10px 10px 0 0;
+}
+
+.form-body {
+	padding: 10px;
+}
+
+.form-body.row {
+	display: flex;
+	justify-content: space-around;
+	padding: 10px;
+}
+
+input[type="text"].form-body.row {
+	appearance: none;
+	width: 100%;
+	margin: 0 15px;
+	height: 35px;
+	padding: 5px 15px;
+	border-radius: 5px;
+	outline: none;
+	border: none;
+	background: #e8ebed;
+	color: #576366;
+	font-size: 14px;
+}
+
+.row {
+	text-align: center;
+}
+
+.rule{
+	height: 2px;
+	background: #e8ebed;
+	margin: 10px 35px;
+}
+
+.form-footer{
+	margin: 0 25px 15px 25px;
+	padding: 15px 10px;
+}
+
+
+.make-mix, .make-pure {
+	transform: scale(1.25, 1.25);
+	font-weight: bold;
+
+	margin: 10px 25px 0;
+
+	display: inline-block;
+	vertical-align: middle;
+	white-space: nowrap;
+
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+
+	background: #DBECF4;
+	border-radius: 20px;
+}
+
+.form-radio {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	position: relative;
+	background-color: #f1f1f1;
+	color: #666;
+	top: 10px;
+	height: 30px;
+	width: 30px;
+	border: 0;
+	border-radius: 50px;
+	cursor: pointer;     
+	margin-right: 7px;
+	outline: none;
+}
+
+.form-radio:checked::before
+{
+	position: absolute;
+	font: 13px/1 'Open Sans', sans-serif;
+	left: 11px;
+	top: 7px;
+	content: '\02143';
+	transform: rotate(40deg);
+}
+.form-radio:hover
+{
+	background-color: #f7f7f7;
+}
+.form-radio:checked
+{
+	background-color: #f1f1f1;
+}
+
+.radio-title {
+	font-size: 24px;
+	line-height: 24px;
+	text-align: center;
+}

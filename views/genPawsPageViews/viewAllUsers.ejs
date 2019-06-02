@@ -1,11 +1,11 @@
 <div class = "all-users-table">
 	
-	<% if (user) { %>
+	<% if (users.length !== 0) { %>
 		<table>
 			<thead>
 				<tr>
 					<th>User</th>
-					<th>Dogs</th>
+					<th>Currently Owns</th>
 					<th>Money</th>
 				</tr>
 			</thead>
@@ -13,7 +13,7 @@
 				<% users.forEach((user) => { %>
 					<tr onclick="window.location='/users/<%= user._id %>';">
 						<td><%= user.name %></td>
-						<td><%= user.dogs.length %></td>
+						<td><%= user.dogs.length %> <%= user.dogs.length === 1 ? "Dog" : "Dogs" %></td>
 						<td>$<%= user.money %></td>
 					</tr>
 				<% }) %>

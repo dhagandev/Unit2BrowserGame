@@ -1,3 +1,9 @@
+.info-sec {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
 .info-dog-name {
 	background: #5E5856;
 	color: #E7F1FA;

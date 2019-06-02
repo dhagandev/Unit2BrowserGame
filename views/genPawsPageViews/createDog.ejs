@@ -1,18 +1,29 @@
-<% if (user) { %>
-	<form id="create-dog" method="POST">
-		<label>Name:</label>
-		<input type="text" name="dogName">
-		<label>Gender:</label>
-		<input type="radio" name="dogGender" value="Female"> Female
-		<input type="radio" name="dogGender" value="Male"> Male
-		<label>Breed:</label>
-		<select name="dogBreed">
-			<% list[0].forEach(function(ele) { %>
-				<option value="<%= ele %>"> <%= ele %> </option>
-			<% }) %>
-		</select>
-
-		<button type="submit" formaction="/dogs/mix" class="btn make-mix">Buy a Mix</button>
-		<button type="submit" formaction="/dogs/pure" class="btn make-pure">Buy a Purebred</button>
-	</form>
-<% } %>
+<div class="card-form-area">
+	<% if (user) { %>
+		<div class="card-form">
+			<form class="create-dog" method="POST">
+				<div class="form-title">Make your new best friend!</div>
+				<div class="form-body">
+					<div class="row">
+						<input type="text" name="dogName" placeholder="Your Dog's Name">
+						<select name="dogBreed">
+							<option value="" disabled selected>Select your option</option>
+							<% list[0].forEach(function(ele) { %>
+								<option value="<%= ele %>"> <%= ele %> </option>
+							<% }) %>
+						</select>
+					</div>
+					<div class="row">
+						<input type="radio" name="dogGender" value="Female" id="radio-one" class="form-radio"> <label class="radio-title"> Female </label>
+						<input type="radio" name="dogGender" value="Male" id="radio-two" class="form-radio"> <label class="radio-title"> Male </label>
+					</div>
+					<div class="rule"/>
+					<div class="form-footer">
+						<button type="submit" formaction="/dogs/mix" class="btn make-mix">Buy a Mix</button>
+						<button type="submit" formaction="/dogs/pure" class="btn make-pure">Buy a Purebred</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	<% } %>
+</div>

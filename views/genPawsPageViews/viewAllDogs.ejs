@@ -1,14 +1,10 @@
-<div class="masonry">
+<div id="columns">
 	<% dogs.sort(() => { return 0.5 - Math.random() }).forEach((dog) => { %>
-		<div class="dog-card">
-			<a href="/dogs/<%= dog._id %>">
-				<div class="dog-card-img">
-					<img src="<%= dog.img %>" alt="A dog's picture">
-				</div>
-				<div class="dog-card-name">
-					<%= dog.name %>
-				</div>
-			</a>
-		</div>
+		<a href="/dogs/<%= dog._id %>" >
+			<figure>
+				<img src="<%= dog.img %>">
+				<figcaption><%= dog.name %></figcaption>
+			</figure>
+		</a>
 	<% }) %>
 </div>
